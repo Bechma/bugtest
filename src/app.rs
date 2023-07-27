@@ -18,20 +18,32 @@ pub fn App() -> impl IntoView {
         <Title text="Welcome to Leptos"/>
 
         // content for this welcome page
-        <Router fallback=|| {
-            let mut outside_errors = Errors::default();
-            outside_errors.insert_with_default_key(AppError::NotFound);
-            view! {
-                <ErrorTemplate outside_errors/>
-            }
-            .into_view()
-        }>
-            <main>
-                <Routes>
-                    <Route path="" view=|| view! { <HomePage/> }/>
-                </Routes>
-            </main>
-        </Router>
+        <main>
+            <Router fallback=|| {
+                let mut outside_errors = Errors::default();
+                outside_errors.insert_with_default_key(AppError::NotFound);
+                view! {
+                    <ErrorTemplate outside_errors/>
+                }
+                .into_view()
+            }>
+                <main>
+                    <Routes>
+                        <Route path="" view=|| view! { <HomePage/> }/>
+                    </Routes>
+                </main>
+            </Router>
+        </main>
+        <footer>
+            <div class="container">
+                <A href="/" class="logo-font">"conduit"</A>
+                <span class="attribution">
+                    "An interactive learning project from "
+                    <a href="https://thinkster.io">"Thinkster"</a>
+                    ". Code &amp; design licensed under MIT."
+                </span>
+            </div>
+        </footer>
     }
 }
 
